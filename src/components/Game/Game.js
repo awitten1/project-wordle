@@ -18,11 +18,23 @@ function Game({num_cols, num_rows, guesses}) {
             (
               <p className="guess" key={r}>
                 {range(num_cols).map((_, c) =>
-                  (
-                  <span key={c} className="cell">
-                    {r < guesses.length ? guesses[r][c] : ''}
-                  </span>
-                  )
+                  {
+                    let className = "cell"
+                    if (r < guesses.length) {
+                      if (guesses[r][c] === answer[c]) {
+                        className = "cell correct"
+                      } else if (answer.includes(guesses[r][c])) {
+                        className = "cell misplaced"
+                      } else {
+                        className = "cell incorrect"
+                      }
+                    }
+                    return (
+                      <span key={c} className={className}>
+                        {r < guesses.length ? guesses[r][c] : ''}
+                      </span>
+                    )
+                  }
                 )}
               </p>
             )
