@@ -40,6 +40,14 @@ button {
   color: inherit;
 }
 
+#start-over {
+  border: 1px solid black;
+  justify-content: right;
+  height: 2.5em;
+  margin: 5px;
+  border-radius: 10%;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -105,6 +113,43 @@ h1 {
   border: 2px solid var(--color-gray-700);
   border-radius: var(--radius);
   font-size: 2rem;
+}
+
+.keyboard.letter {
+  /* position: relative; */
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+  border-radius: 20%;
+  place-content: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border: 2px solid var(--color-gray-700);
+  font-size: 1rem;
+}
+
+.keyboard.letter.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
+.keyboard.letter.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+
+.keyboard.letter.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+
+.keyboard.letter.unguessed {
+  background: var(--color-gray-900);
+  border-color: var(--color-gray-900);
+  color: rgb(21, 18, 18);
 }
 
 /*
@@ -183,6 +228,14 @@ h1 {
 .sad.banner {
   background: var(--color-error);
   color: white;
+}
+
+.keyboard-row {
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  margin: 1px;
 }
 
 .visually-hidden {

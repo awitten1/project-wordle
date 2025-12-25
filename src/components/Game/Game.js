@@ -1,33 +1,28 @@
 import React from 'react';
 
-import { range, sample } from '../../utils';
+import { range } from '../../utils';
 import { WORDS } from '../../data';
+import { checkGuess } from '../../game-helpers';
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
-function Game({num_cols, num_rows, guesses}) {
-  console.log(guesses)
+function Game({num_cols, num_rows, guesses, answer}) {
   return (
     <>
       <div className="guess-results">
         {
-          range(num_rows).map((_, r) =>
-            (
+          range(num_rows).map((_, r) =>  {
+            let results;
+            if (r < guesses.length) {
+              results = checkGuess(guesses[r], answer)
+            }
+
+            return (
               <p className="guess" key={r}>
                 {range(num_cols).map((_, c) =>
                   {
-                    let className = "cell"
+                    let className = "cell";
                     if (r < guesses.length) {
-                      if (guesses[r][c] === answer[c]) {
-                        className = "cell correct"
-                      } else if (answer.includes(guesses[r][c])) {
-                        className = "cell misplaced"
-                      } else {
-                        className = "cell incorrect"
-                      }
+                      let status = results[c].status
+                      className += " " + status
                     }
                     return (
                       <span key={c} className={className}>
@@ -38,6 +33,7 @@ function Game({num_cols, num_rows, guesses}) {
                 )}
               </p>
             )
+            }
           )
         }
 
